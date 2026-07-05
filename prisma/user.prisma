@@ -1,16 +1,12 @@
 model User {
   id        String     @id @default(uuid())
+  name      String
   email     String     @unique
   password  String
   role      UserRole   @default(CUSTOMER)
-  status    UserStatus @default(ACTIVE) 
+  status    UserStatus @default(ACTIVE)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-
-  // Relationships
-//   technicianProfile TechnicianProfile?
-//   bookings          Booking[]
-//   reviews           Review[]
 
   @@map("users")
 }
