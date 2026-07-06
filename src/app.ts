@@ -7,6 +7,7 @@ import { authRoutes } from "./modules/auth/auth.routes";
 import { technicianRoutes } from "./modules/technician/technician.routes";
 import { serviceRoutes } from "./modules/service/service.routes";
 import { categoryRoutes } from "./modules/category/category.routes";
+import { adminRoutes } from "./modules/admin/admin.routes";
 const app : Application = express();
 app.use(cors({
     origin : config.app_url,
@@ -26,4 +27,5 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/technicians", technicianRoutes);
+app.use("/api/admin", adminRoutes);
 export default app;

@@ -17,6 +17,12 @@ declare global {
         }
     }
 }
+interface IJwtPayload extends JwtPayload {
+    id: string;
+    email: string;
+    name: string;
+    role: UserRole;
+}
 export const auth = (...requiredRoles: UserRole[]) => {
     return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
         const token = req.cookies.accessToken ?
@@ -36,7 +42,7 @@ export const auth = (...requiredRoles: UserRole[]) => {
             throw new Error(verifiedToken.error);
         }
 
-        const { email, name, id, role } = verifiedToken.data as JwtPayload;
+const { email, name, id, role } = verifiedToken.data as IJwtPayload;
 
         if(requiredRoles.length && !requiredRoles.includes(role)){
             throw new Error("Forbidden. You don't have permission to access this resource.");
@@ -44,10 +50,10 @@ export const auth = (...requiredRoles: UserRole[]) => {
 
         const user = await prisma.user.findUnique({
             where: {
-                id,
-                email,
-                name,
-                role
+                id
+                // email,
+                // name,
+                // role
             }
         });
 
