@@ -12,3 +12,4 @@ router.get("/bookings", auth(UserRole.TECHNICIAN), technicianController.getOwnBo
 router.patch("/bookings/:id", auth(UserRole.TECHNICIAN), technicianController.updateBookingStatus);
 
 export const technicianSelfRoutes = router;
+// adddajdhajkyaujkyda
