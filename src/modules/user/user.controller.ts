@@ -14,5 +14,18 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
         data: result,
     });
 });
+const getMyProfile = catchAsync(async (req: Request, res: Response) => {
+    // auth মিডলওয়্যার থেকে আইডি পাচ্ছেন
+    const { id } = req.user as { id: string };
 
-export const userController = { registerUser };
+    const result = await userService.getUserProfile(id);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Profile retrieved successfully",
+        data: result,
+    });
+});
+
+export const userController = { registerUser, getMyProfile };
