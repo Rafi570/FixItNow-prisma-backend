@@ -1,3 +1,5 @@
+import { BookingStatus } from "../../../generated/prisma/client";
+
 export interface ITechnicianFilters {
     location?: string;
     minRating?: string;
@@ -28,4 +30,9 @@ export interface ICreateTechnicianService {
     price: number;
     durationMins?: number;
     categoryId: string;
+}
+
+
+export interface IUpdateBookingStatus {
+    status: BookingStatus;
 }

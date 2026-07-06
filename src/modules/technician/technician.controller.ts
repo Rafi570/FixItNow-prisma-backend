@@ -68,5 +68,29 @@ const getOwnServices = catchAsync(async (req: Request, res: Response) => {
         data: result,
     });
 });
+const getOwnBookings = catchAsync(async (req: Request, res: Response) => {
+    const userId = req.user!.id;
+    const result = await technicianService.getOwnBookings(userId);
 
-export const technicianController = { getAllTechnicians, getTechnicianById ,getOwnServices,createOwnService,updateOwnProfile};
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Your bookings retrieved successfully",
+        data: result,
+    });
+});
+
+const updateBookingStatus = catchAsync(async (req: Request, res: Response) => {
+    const userId = req.user!.id;
+    const { id } = req.params;
+    const result = await technicianService.updateBookingStatus(userId, id as string, req.body);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Booking status updated successfully",
+        data: result,
+    });
+});
+
+export const technicianController = { getAllTechnicians, getTechnicianById ,getOwnServices,createOwnService,updateOwnProfile,getOwnBookings,updateBookingStatus};
