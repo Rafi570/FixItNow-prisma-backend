@@ -9,6 +9,7 @@ import { serviceRoutes } from "./modules/service/service.routes";
 import { categoryRoutes } from "./modules/category/category.routes";
 import { adminRoutes } from "./modules/admin/admin.routes";
 import { bookingRoutes } from "./modules/booking/booking.routes";
+import { technicianSelfRoutes } from "./modules/technician/technicianSelf.routes";
 const app : Application = express();
 app.use(cors({
     origin : config.app_url,
@@ -17,8 +18,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
 app.use(cookieParser());
-
-
 app.get("/",(req : Request, res : Response) => {
     res.send("Hello, World!");
 });
@@ -28,6 +27,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/technicians", technicianRoutes);
+app.use("/api/technician", technicianSelfRoutes);    
 app.use("/api/admin", adminRoutes);
 app.use("/api/bookings", bookingRoutes);
 
