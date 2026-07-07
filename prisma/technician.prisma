@@ -15,6 +15,7 @@ model TechnicianProfile {
   // Relationships
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   bookings Booking[]
+  reviews Review[]
 
 
 
