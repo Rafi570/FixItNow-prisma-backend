@@ -15,6 +15,7 @@ model Booking {
   customer   User              @relation(fields: [customerId], references: [id])
   service    Service           @relation(fields: [serviceId], references: [id])
   technician TechnicianProfile @relation(fields: [technicianId], references: [id])
+  payment    Payment?
 
   @@map("bookings")
 }
