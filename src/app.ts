@@ -12,6 +12,7 @@ import { bookingRoutes } from "./modules/booking/booking.routes";
 import { technicianSelfRoutes } from "./modules/technician/technicianSelf.routes";
 import { paymentRoutes } from "./modules/payment/payment.routes";
 import { reviewRoutes } from "./modules/review/review.route";
+import notFound from "./middlewares/notFound";
 const app : Application = express();
 app.use(cors({
     origin : config.app_url,
@@ -36,6 +37,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use(notFound);    
 
 
 
